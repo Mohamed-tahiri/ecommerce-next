@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineShopping , AiOutlineLogin, AiOutlineLogout } from 'react-icons/ai';
 
@@ -8,15 +8,19 @@ import { Cart , CartLogin } from './';
 import { Store } from '../context/StateContext';
  
 const Navbar = () => {
-  
-  const { state, dispatch} = useContext(Store);
-
-  const {
+  const { state:{
     userInfo,
     cart: {cartItems},
     panier,
     login
-  } = state;
+  }, dispatch} = useContext(Store);
+  const [user, setUser] = useState();
+  
+  useEffect(()=>{
+    setUser(userInfo);
+  },[userInfo])
+
+  
 
   const logoutHandler = () => {
     dispatch({ type: 'USER_LOGOUT' });
@@ -45,14 +49,14 @@ const Navbar = () => {
       <div
         style={{display: 'flex'}}
       >
-        {userInfo
+        {user
         ? (
           <>
             <h5 
               className='username'
               style={{marginRight: 10}}
             >
-              <Link href="/profile">{userInfo.name}</Link>
+              {userInfo.name}
             </h5>
           
             <button 
