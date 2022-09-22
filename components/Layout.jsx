@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-
 import Navbar from './Navbar';
 import Footer from './Footer';
 
@@ -10,6 +9,7 @@ const Layout = ({ children }) => {
     <div className='layout'>
       <Head>
         <title>Tahiri Store</title>
+        <link rel="icon" type='image/png' href="/logste.png" />
       </Head>
       <header>
         <Navbar />
