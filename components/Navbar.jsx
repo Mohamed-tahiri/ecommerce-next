@@ -56,7 +56,7 @@ const Navbar = () => {
               className='username'
               style={{marginRight: 10}}
             >
-              {userInfo.name}
+              {user.name}
             </h5>
           
             <button 

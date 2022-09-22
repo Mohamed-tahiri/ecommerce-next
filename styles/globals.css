@@ -159,12 +159,14 @@ span.text-red {
   border: none;
   margin-right: 10px;
   border-bottom: 2px solid #f02d34;
+  width: 150px;
 }
 
 .filter p {
   margin-right: 15px;
   color: #324d67;
   font-size: 17px;
+  width: 115px;
 }
 
 .pagination {
@@ -746,6 +748,11 @@ span.text-red {
   font-size: 40px;
 }
 
+.cancel .icon {
+  color: red;
+  font-size: 40px;
+}
+
 .success h2 {
   text-transform: capitalize;
   margin-top: 15px 0px;
@@ -1012,6 +1019,15 @@ span.text-red {
 
   .product-filter{
     display: inline;
+  }
+  
+  .product-filter p {
+    margin-left: 50px;
+    width: 100px;
+  }
+
+  .product-filter select {
+    width: 150px;
   }
 
 }

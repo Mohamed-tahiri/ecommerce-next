@@ -4,14 +4,9 @@ import React, {useState, useEffect, useContext} from 'react';
 import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '../lib/utils';
-import Cookies from 'js-cookie';
 import { Store } from '../context/StateContext';
 const success = () => {
-    const { state, dispatch} = useContext(Store);
-    const {
-        panier,
-        userInfo,
-    } = state;
+    const { dispatch} = useContext(Store);
 
     const hidePanier = () => {
         dispatch({ type: 'PANIER_OFF' })
@@ -22,9 +17,9 @@ const success = () => {
     }
 
     useEffect(() => {
+        runFireworks();
         deleteCart();
         hidePanier();
-        runFireworks();
     }, []);
 
     return (
@@ -34,9 +29,6 @@ const success = () => {
                     <BsBagCheckFill />
                 </p>
                 <h2>Thank you for you order!</h2>
-                <p className='email-msg'>
-                    Check your email inbox for the receipt.
-                </p>
                 <p className='description'>
                     if you have any questions, send me an email
                     <a className='email' href='mailto:mhdtahiri01@gmail.com'>

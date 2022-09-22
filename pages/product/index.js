@@ -24,6 +24,7 @@ const prices = [
 const index = () => {
     const ITEMS_PER_PAGE = 16;
     const [pageIndex, setPageIndex] = useState(0);
+    const [pagination, setPagination] = useState(false);
     const [products, setProducts] = useState();
     const [count, setCount] = useState(0);
     const [categories, setCategories] = useState([]);
@@ -107,7 +108,12 @@ const index = () => {
         }
       };
       fetchData();
-    }, [category, products, price, sort, brand, pageIndex]);
+
+      if(count>1){
+        setPagination(true);
+      }
+
+    }, [category, products, price, sort, brand, pageIndex, count]);
 
     const categoryHandler = (e) => {
       setCategory(e.target.value);
@@ -197,21 +203,17 @@ const index = () => {
             )
         }
       </div>
-      {count > 1 
-        ? (
-          <Pagination
-            className='pagination'
-            count={count}
-            renderItem={(item) => (
-              <PaginationItem
-                onChange={paginateItem(item)}
-                {...item}
-              />
-            )}
-          />
-        ) : (
-          <></>
-        )
+      {pagination &&
+        <Pagination
+          className='pagination'
+          count={count}
+          renderItem={(item) => (
+            <PaginationItem
+              onChange={paginateItem(item)}
+              {...item}
+            />
+          )}
+        />
       }
     </div>
     

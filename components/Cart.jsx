@@ -11,6 +11,8 @@ import { urlFor } from '../lib/client';
 import getStripe from '../lib/getStripe';
 import { Store } from '../context/StateContext';
 import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Cart = () => {
   const cartRef = useRef();
@@ -21,6 +23,8 @@ const Cart = () => {
     cart: {cartItems},
     panier
   } = state;
+
+
   
 
   const showPanier = () => {

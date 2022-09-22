@@ -1,18 +1,35 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import Link from 'next/link'
 import React from 'react'
-import { BsBagCheckFill } from 'react-icons/bs'
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { BsXSquareFill } from 'react-icons/bs'
+import { Store } from '../context/StateContext';
 
 const canceled = () => {
-  return (
-    <div className='success-wrapper'>
-            <div className='success'>
+    const { dispatch} = useContext(Store);
+
+    const hidePanier = () => {
+        dispatch({ type: 'PANIER_OFF' })
+    }
+
+    const deleteCart = () => {
+        dispatch({ type: 'CART_REMOVE' })
+    }
+
+    useEffect(() => {
+        deleteCart();
+        hidePanier();
+    }, [deleteCart, hidePanier]);
+
+    return (
+        <div className='cancel-wrapper'>
+            <div className='cancel'>
                 <p className='icon'>
-                    <BsBagCheckFill />
+                    <BsXSquareFill />
                 </p>
-                <h2>Thank you for you order!</h2>
-                <p className='email-msg'>
-                    Check your email inbox for the receipt.
-                </p>
+                <h2>Cancel your order!</h2>
                 <p className='description'>
                     if you have any questions, send me an email
                     <a className='email' href='mailto:mhdtahiri01@gmail.com'>
