@@ -139,6 +139,12 @@ span.text-red {
   width: 100%;
 }
 
+.products-container h2 {
+  padding: 120px;
+  text-align: center;
+  color: #f02d34;
+}
+
 .product-filter {
   margin-left: 50px;
   margin-bottom: 30px;

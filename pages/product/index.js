@@ -25,7 +25,8 @@ const index = () => {
     const ITEMS_PER_PAGE = 16;
     const [pageIndex, setPageIndex] = useState(0);
     const [pagination, setPagination] = useState(false);
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState([]);
+    const [productsOn, setProductsOn] = useState(false);
     const [count, setCount] = useState(0);
     const [categories, setCategories] = useState([]);
     const [category, setCategory] = useState('all');
@@ -33,6 +34,9 @@ const index = () => {
     const [brands, setBrands] = useState([]);
     const [price, setPrice] = useState('all');
     const [sort, setSort] = useState('default');
+
+
+
 
     useEffect(() => {
 
@@ -111,6 +115,12 @@ const index = () => {
 
       if(count>1){
         setPagination(true);
+      }
+
+      if(products.length > 0) {
+        setProductsOn(true);
+      }else {
+        setProductsOn(false);
       }
 
     }, [category, products, price, sort, brand, pageIndex, count]);
@@ -197,10 +207,17 @@ const index = () => {
 
       </div>
       <div className='products-container'>
-        { products &&
-            products.map((product, index ) => 
-              <Product key={index} product={product} />
+        { productsOn ?
+            (
+              products.map((product, index ) => 
+                <Product key={index} product={product} />
+              )
             )
+            :
+            (
+              <h2>Products not found !</h2>
+            )
+
         }
       </div>
       {pagination &&
